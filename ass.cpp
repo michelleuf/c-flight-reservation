@@ -1,6 +1,7 @@
 #include<iostream>
 #include <fstream>
 #include<string.h>
+#include<ass.h>
 #include<iomanip>
 #define max 1000
 
@@ -65,23 +66,7 @@ class flight
 
 };
 
-int flight_count()   //we can determine how much the array size is
-{
-	int fl_count=0;
-	myfile.open("flights.txt");
-	if (myfile.is_open())
-	{
-		while (getline(myfile,line))
-		{
-			if (line.empty())
-			{
-				fl_count++;
-			}
-		}
-	}
-	myfile.close();
-	return fl_count;
-}
+
 flight flarray[fl_count];
 
 void file_read()
@@ -158,7 +143,23 @@ int main()
 	
 	return 0;
 }
-
+int flight_count()   //we can determine how much the array size is
+{
+	int fl_count=0;
+	myfile.open("flights.txt");
+	if (myfile.is_open())
+	{
+		while (getline(myfile,line))
+		{
+			if (line.empty())
+			{
+				fl_count++;
+			}
+		}
+	}
+	myfile.close();
+	return fl_count;
+}
 
 void display_avail_flights()
 {
