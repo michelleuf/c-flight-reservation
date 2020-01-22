@@ -1,5 +1,5 @@
 #include <iostream>
-#include <sstream>
+
 #include <string>
 
 using namespace std;
@@ -11,7 +11,7 @@ int main()
 
     do
     {
-        iss >> seat_location[i].row_no;
+        iss >>seat_location[i].row_no>>seat_location[i].type;
         //seat_location[i].row_no << "Substring: " << subs << endl;
     } while (line);
 }

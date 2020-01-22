@@ -2,9 +2,11 @@
 #include <fstream>
 #include<string.h>
 #include <sstream>
-//#include<ass.h>
 #include<iomanip>
+
+
 #define max 50
+
 using namespace std;
 
 // functions may use --------------------
@@ -29,7 +31,7 @@ struct row
 class flight
 {
 	private:
-		string flight_no;
+//		string flight_no;
 		string date_time;
 		string dept_airport;
 		string arrive_airport;
@@ -37,8 +39,10 @@ class flight
 	
 	public:
 		void view_a_flight(string flight_no);
-		void display_avail_flights();
+		friend void display_avail();
 		void getdata();
+		friend void update_seats(string flight_no, string seat_no);
+		friend void avail_seats();
 		
 };
 
@@ -81,6 +85,9 @@ int flight_count()   //we can determine how much the array size is
 	myfile.close();
 	return fl_count;
 }
+//-----------------------------------------------------------------
+
+
 
 void flight::getdata()
 		{
@@ -95,7 +102,7 @@ void flight::getdata()
 			getline(myfile,line);
 			
 			istringstream iss(line);
-			for (i=0;i<60;i++)							//if a row is missing it should be written as 0 in the seat_location array
+			for (i=0;i<60;i++)							
 			{
 				iss >>seat_location[i].row_no>>seat_location[i].type>>seat_location[i].seat_letters;
         	}
@@ -103,17 +110,25 @@ void flight::getdata()
 		}
 		
 		
-
-void display_avail_flights()
+//-----------01--------02-------------------------
+void display_avail()
 {
-	//read first line of each paragraph and detect the flight numbers
-	// then display it 
-	
+	//for (i=0;i<fl_count;i++)
+	//{
+		cout<<"flight_no : "<<flarray[i].flight_no<<endl;
+		cout<<"date and time: "<<flarray[i].date_time<<endl;
+		cout<<"dept airport: "<<flarray[i].dept_airport<<endl;
+		cout<<"arrival airport: "<<flarray[i].arrive_airport<<endl;
+		//avail seats with classes
+	//}
 }
-void flight::view_a_flight(string flight_no)
+
+//----------------------------------------------
+//----------------03----------------------------
+void view_a_flight(string flight_no,int no_of_seats)
 {
 	//find the corresponding data set
-	for (i=0;i<1000;i++)
+	for (i=0;i<fl_count;i++)
 	{
 		if (flarray[i].flight_no==flight_no)
 		{
@@ -121,12 +136,44 @@ void flight::view_a_flight(string flight_no)
 			cout<<flarray[i].dept_airport;
 			cout<<flarray[i].arrive_airport;
 			cout<<flarray[i].date_time;
+		break;	
 		}
 	}
+	
 	cout<<endl;
 }
 
 
+
+//---------------------------------------------
+//--------04--------------------------------------
+void update_seats(string flight_no,string seat_no)
+{
+	for (i=0;i<fl_count;i++)
+	{
+		if (flight_no==flarray[i].flight_no)
+		{
+			/*for (j=0;j<flarray.size();j++)
+			{
+				if (seat_no[4]==" ")
+				{
+					//////
+				}
+			if(seatno[6]==seat_location[i].seat_letters)
+			{
+				seat_location.seat_letters.erase(i,1);     //in here i have to give only ABC then it delete A    cant give 50 E B             
+				cout << row << '\n';
+				break;	
+			}
+			}*/
+		
+		}
+		else if 
+		{
+			cout<<"Error !!!! Cant find the flight"<<endl;
+		}
+}
+}
 int main()
 {
 	//myfile.open("flights.txt");
@@ -152,35 +199,40 @@ int main()
 		switch (opt)
 		{
 		case 1: 
-		//	display_avail_flights();
+			for (i=0;i<flarray.size();i++)
+			{
+				display_avail();
+			}
 			break;
 		case 2: 
-			cout<<"enter the flight_no : ";
+			file_read();
+			cout<<"enter the flight_no : ";									//then show avail seat numbers with classes 
 			cin>>flight_no;
 			
-			flarray[1].getdata();
-			cout<<flarray[1].flight_no;
-			//if flight no match with avail flights
-				//	--------read the file
-				//then show avail seat numbers with classes 
-				//view_flight();
+			if(flight_no==flarray[i].)
+			//view_flight();
 				
 			// else if 
 				//cout<<"Error!! No available seats in this flight"<<endl;
 			break;
+		
 		case 3:
 			cout<<"enter the flight_no : ";
 			cin>>flight_no;
 			cout<<"no.of seats required: "  ;
 			cin>>no_of_seats;
+			// avail_seats();
  		break;
- 		case 4:
+ 		
+		 case 4:
 		 	cout<<"enter the flight_no : ";
 			cin>>flight_no;
 			cout<<"enter the seat location: "  ;
 			cin>>seat_loc;
+			//update_seats(flight_no,seat_loc);
  		break;
- 		case 5: return 0;
+ 		
+		 case 5: return 0;
  		break;
 		default:"error again enter key between 1-4";
 		}
