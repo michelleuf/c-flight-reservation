@@ -1,9 +1,9 @@
 #include<iostream>
 #include <fstream>
 #include<string.h>
-#include<ass.h>
+//#include<ass.h>
 #include<iomanip>
-#define max 1000
+#define max 50
 
 using namespace std;
 
@@ -11,17 +11,18 @@ using namespace std;
 void display_avail_flights();
 void view_a_flight(string flight_no);
 void file_read();
-
 int flight_count();
+
 
 //void view_flight();
 
-//---------------------------------------
-int fl_count;
 
+//---------------------------------------
 ifstream myfile;
 string line;
 int i;
+int fl_count;
+
 
 struct row
 {
@@ -41,6 +42,8 @@ class flight
 	
 	public:
 		void view_a_flight(string flight_no);
+		void file_read();
+
 		void getdata ()
 		{
 			//read the file line by line and get data---- file should convert to an array------******
@@ -65,9 +68,8 @@ class flight
 
 
 };
+flight flarray[max];
 
-
-flight flarray[fl_count];
 
 void file_read()
 {
